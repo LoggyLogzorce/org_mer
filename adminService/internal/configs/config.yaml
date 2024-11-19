@@ -1,0 +1,29 @@
+server:
+  timeout: 10
+  port: "8080"
+
+handlers:
+  LoginPage:
+    url: "login"
+    method: "GET"
+  HomePage:
+    url: ""
+    method: "GET"
+
+api:
+  Auth:
+    url: "api/auth/admin"
+    method: "POST"
+
+accessExceptions:
+  list:
+    - HomePage
+    - LoginPage
+
+db:
+  host_db: "localhost"
+  port_db: "5432"
+  user: "postgres"
+  password: "23032004tepor"
+  dbname: "organizaciya_meropriyatiy"
+  sslmode: "disable"
