@@ -2,7 +2,6 @@ package main
 
 import (
 	"adminService/internal/configs"
-	"adminService/internal/db"
 	"adminService/internal/handler"
 	"log"
 	"net/http"
@@ -22,8 +21,6 @@ func main() {
 		ReadTimeout:  cfg.Timeout * time.Second,
 		WriteTimeout: cfg.Timeout * time.Second,
 	}
-
-	db.Connect()
 
 	log.Printf("Listening %s...", cfg.Port)
 

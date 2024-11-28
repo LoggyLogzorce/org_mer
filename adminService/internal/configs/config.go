@@ -21,21 +21,11 @@ type AccessExceptions struct {
 	List []string `yaml:"list"`
 }
 
-type DataBase struct {
-	HostDb   string `yaml:"host_db"`
-	PortDb   string `yaml:"port_db"`
-	User     string `yaml:"user"`
-	Password string `yaml:"password"`
-	DbName   string `yaml:"dbname"`
-	SslMode  string `yaml:"sslmode"`
-}
-
 type Config struct {
 	Server           `yaml:"server"`
 	Handlers         map[string]Service `yaml:"handlers"`
 	Api              map[string]Service `yaml:"api"`
 	AccessExceptions `yaml:"accessExceptions"`
-	DataBase         `yaml:"db"`
 }
 
 var config Config

@@ -12,6 +12,7 @@ import (
 )
 
 var types map[string]bool
+var cfg *configs.Config
 
 var uHdl *user.Handler
 var urlMap map[string]map[string]reflect.Value
@@ -27,7 +28,7 @@ func init() {
 	types[".jpg"] = true
 	types[".png"] = true
 
-	cfg := configs.Get()
+	cfg = configs.Get()
 	urlMap = make(map[string]map[string]reflect.Value)
 	urlMap["POST"] = make(map[string]reflect.Value)
 	urlMap["PUT"] = make(map[string]reflect.Value)
@@ -113,6 +114,11 @@ func UrlHandler(ctx *context.Context, path string) {
 		return
 	}
 
+	if !access(ctx, path) {
+		ctx.Response.WriteHeader(403)
+		return
+	}
+
 	method, ok := methodMap[path]
 	if !ok {
 		http.Error(ctx.Response, "Path not found", http.StatusNotFound)
@@ -130,6 +136,11 @@ func ApiHandler(ctx *context.Context, path string) {
 		return
 	}
 
+	if !access(ctx, path) {
+		ctx.Response.WriteHeader(403)
+		return
+	}
+
 	method, ok := methodMap[path]
 	if !ok {
 		http.Error(ctx.Response, "Path not found", http.StatusNotFound)
@@ -138,4 +149,13 @@ func ApiHandler(ctx *context.Context, path string) {
 
 	log.Println("method: ", method)
 	method.Call([]reflect.Value{reflect.ValueOf(ctx)})
+}
+
+func access(ctx *context.Context, path string) bool {
+	for _, value := range cfg.AccessExceptions.List {
+		if value == path {
+			return api.AuthByToken(ctx)
+		}
+	}
+	return true
 }

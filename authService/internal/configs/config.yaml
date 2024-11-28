@@ -6,6 +6,9 @@ apiMap:
   AuthAdmin:
     url: "auth/admin"
     method: "POST"
+  AuthAdminByToken:
+    url: "auth/admin/token"
+    method: "POST"
 
 db:
   host_db: "localhost"

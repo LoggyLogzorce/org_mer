@@ -1,6 +1,7 @@
 package token
 
 import (
+	"fmt"
 	"github.com/dgrijalva/jwt-go"
 	"time"
 )
@@ -24,4 +25,36 @@ func CreateToken(uuid uint8, role string) string {
 	}
 
 	return tokenString
+}
+
+func IsTokenValid(tokenString string) bool {
+	// Парсинг токена
+	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
+		// Проверка алгоритма подписи
+		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
+			return nil, fmt.Errorf("unexpected signing method: %v", token.Header["alg"])
+		}
+
+		return secretKey, nil
+	})
+	if err != nil {
+		return false
+	}
+
+	claims, ok := token.Claims.(jwt.MapClaims)
+	if !ok {
+		return false
+	}
+
+	if !token.Valid {
+		return false
+	}
+
+	// Проверка наличия поля "role" и его типа
+	userRole, ok := claims["role"]
+	if !ok || userRole != "sotrudnik" {
+		return false
+	}
+
+	return true
 }

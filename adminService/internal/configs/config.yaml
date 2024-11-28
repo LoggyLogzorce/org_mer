@@ -17,13 +17,4 @@ api:
 
 accessExceptions:
   list:
-    - HomePage
-    - LoginPage
-
-db:
-  host_db: "localhost"
-  port_db: "5432"
-  user: "postgres"
-  password: "23032004tepor"
-  dbname: "organizaciya_meropriyatiy"
-  sslmode: "disable"
+    - ""
