@@ -1,0 +1,58 @@
+/* Сброс стилей для браузеров */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    padding-bottom: 20px;
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+section {
+    padding: 20px;
+}
+
+/* Предположение: календарь - таблица, задачи - список */
+#calendar {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#calendar th, #calendar td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#calendar th {
+    background-color: #f2f2f2;
+}
+
+#tasks {
+    list-style: none;
+}
+
+#tasks li {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+#applications {
+    float: left;
+    width: 30%;
+    margin-right: 20px;
+}
+
+.application {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}

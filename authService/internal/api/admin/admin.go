@@ -29,7 +29,7 @@ func (h *Handler) AuthAdmin(ctx *context.Context) {
 	}
 
 	u := user.GetUser(data)
-	if u.IdPolzovatelya != 0 {
+	if u.IdPolzovatelya != 0 && u.NaimenovanieRoli == "sotrudnik" {
 		tokenString := token.CreateToken(u.IdPolzovatelya, u.NaimenovanieRoli)
 
 		res = &response{

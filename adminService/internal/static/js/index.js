@@ -26,7 +26,7 @@ loginForm.addEventListener('submit', (event) => {
             if (data.ok) {
                 window.location.href = '/';
             } else {
-                errorMessage.textContent = data.error || 'Произошла ошибка при авторизации';
+                errorMessage.textContent = 'Неверный логин или пароль';
             }
         })
         .catch(error => {

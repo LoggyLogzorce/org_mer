@@ -1,0 +1,16 @@
+server:
+  timeout: 10
+  port: "8082"
+
+apiMap:
+  GetEvents:
+    url: "get/events"
+    method: "GET"
+
+db:
+  host_db: "localhost"
+  port_db: "5432"
+  user: "postgres"
+  password: "23032004tepor"
+  dbname: "organizaciya_meropriyatiy"
+  sslmode: "disable"

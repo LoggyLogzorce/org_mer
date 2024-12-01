@@ -2,7 +2,7 @@ package main
 
 import (
 	"adminService/internal/configs"
-	"adminService/internal/handler"
+	"adminService/internal/handlers"
 	"log"
 	"net/http"
 	"time"
@@ -11,7 +11,7 @@ import (
 func main() {
 	m := http.NewServeMux()
 
-	m.HandleFunc("/", handler.MainHandler)
+	m.HandleFunc("/", handlers.MainHandler)
 
 	cfg := configs.Get()
 

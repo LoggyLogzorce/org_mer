@@ -14,7 +14,11 @@ api:
   Auth:
     url: "api/auth/admin"
     method: "POST"
+  GetEvents:
+    url: "api/applications"
+    method: "GET"
 
 accessExceptions:
   list:
     - ""
+    - "api/applications"

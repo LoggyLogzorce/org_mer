@@ -4,7 +4,6 @@ import (
 	"adminService/internal/context"
 	"bytes"
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 )
@@ -19,6 +18,12 @@ func (h *Handler) Auth(ctx *context.Context) {
 	dataJson, err := json.Marshal(data)
 
 	res, err := http.Post("http://localhost:8081/auth/admin", "application/json", bytes.NewReader(dataJson))
+	if err != nil {
+		log.Println(err)
+		return
+	}
+	defer res.Body.Close()
+
 	err = json.NewDecoder(ctx.Request.Body).Decode(res)
 	token := res.Header.Get("Authorization")
 
@@ -35,6 +40,7 @@ func (h *Handler) Auth(ctx *context.Context) {
 		}{
 			Ok: true,
 		}
+		ctx.Response.Header().Set("Content-Type", "application/json")
 		err = json.NewEncoder(ctx.Response).Encode(response)
 		return
 	}
@@ -63,8 +69,6 @@ func AuthByToken(ctx *context.Context) bool {
 
 	err = json.NewDecoder(ctx.Request.Body).Decode(res)
 	val := res.Header.Get("Authorization")
-
-	fmt.Println(val)
 
 	if val != "" {
 		return true
