@@ -17,6 +17,8 @@ func init() {
 	apiMap = make(map[string]map[string]reflect.Value)
 	apiMap["POST"] = make(map[string]reflect.Value)
 	apiMap["GET"] = make(map[string]reflect.Value)
+	apiMap["PUT"] = make(map[string]reflect.Value)
+	apiMap["DELETE"] = make(map[string]reflect.Value)
 
 	maps := cfg.ApiMap
 

@@ -3,14 +3,15 @@ package token
 import (
 	"fmt"
 	"github.com/dgrijalva/jwt-go"
+	"log"
 	"time"
 )
 
 var secretKey = []byte("secret_key")
 
-func CreateToken(uuid uint8, role string) string {
+func CreateToken(uid uint8, role string) string {
 	claims := jwt.MapClaims{
-		"uid":  uuid,
+		"uid":  uid,
 		"role": role,
 		"exp":  time.Now().Add(15 * time.Minute).Unix(),
 	}
@@ -29,15 +30,9 @@ func CreateToken(uuid uint8, role string) string {
 
 func IsTokenValid(tokenString string) bool {
 	// Парсинг токена
-	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
-		// Проверка алгоритма подписи
-		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
-			return nil, fmt.Errorf("unexpected signing method: %v", token.Header["alg"])
-		}
-
-		return secretKey, nil
-	})
+	token, err := ParseToken(tokenString)
 	if err != nil {
+		log.Println("Ошибка парсинга токена:", err)
 		return false
 	}
 
@@ -50,11 +45,47 @@ func IsTokenValid(tokenString string) bool {
 		return false
 	}
 
-	// Проверка наличия поля "role" и его типа
 	userRole, ok := claims["role"]
 	if !ok || userRole != "sotrudnik" {
 		return false
 	}
 
 	return true
+}
+
+func GetUidByToken(tokenString string) (uint8, error) {
+	token, err := ParseToken(tokenString)
+	if err != nil {
+		log.Println("Ошибка парсинга токена: ", err)
+		return 0, err
+	}
+
+	claims, ok := token.Claims.(jwt.MapClaims)
+	if !ok {
+		log.Println("Ошибка чтения claims")
+		return 0, err
+	}
+
+	userId, ok := claims["uid"]
+	if !ok {
+		log.Println("Ошибка получения uid")
+		return 0, err
+	}
+
+	return uint8(userId.(float64)), nil
+}
+
+func ParseToken(tokenString string) (*jwt.Token, error) {
+	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
+		// Проверка алгоритма подписи
+		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
+			return nil, fmt.Errorf("unexpected signing method: %v", token.Header["alg"])
+		}
+
+		return secretKey, nil
+	})
+	if err != nil {
+		return nil, err
+	}
+	return token, nil
 }

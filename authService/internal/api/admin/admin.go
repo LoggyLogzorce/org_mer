@@ -12,6 +12,7 @@ import (
 var res *response
 
 type response struct {
+	Uid   uint8  `json:"uid"`
 	Ok    bool   `json:"ok"`
 	Token string `json:"token"`
 }
@@ -75,5 +76,35 @@ func (h *Handler) AuthAdminByToken(ctx *context.Context) {
 	}
 
 	ctx.Response.WriteHeader(401)
+	return
+}
+
+func (h *Handler) GetAdminIdByToken(ctx *context.Context) {
+	var data map[string]string
+	if err := json.NewDecoder(ctx.Request.Body).Decode(&data); err != nil {
+		http.Error(ctx.Response, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	res = &response{
+		Uid: 0,
+		Ok:  false,
+	}
+
+	uid, err := token.GetUidByToken(data["token"])
+	ctx.Response.Header().Set("Content-Type", "application/json")
+	if err != nil {
+		err := json.NewEncoder(ctx.Response).Encode(&res)
+		if err != nil {
+			log.Println(err)
+		}
+
+	}
+
+	res = &response{
+		Uid: uid,
+		Ok:  true,
+	}
+	err = json.NewEncoder(ctx.Response).Encode(&res)
 	return
 }

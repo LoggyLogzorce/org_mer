@@ -15,8 +15,11 @@ func UrlHandler(ctx *context.Context, path string) {
 	}
 
 	if !access(ctx, path) {
-		errorPath(ctx, 403)
-		return
+		if path != "" {
+			errorPath(ctx, 403)
+			return
+		}
+		path = "login"
 	}
 
 	method, ok := methodMap[path]

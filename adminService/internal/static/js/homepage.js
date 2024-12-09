@@ -6,10 +6,10 @@ function fetchApplications() {
         .then(response => response.json())
         .then(data => {
             const applicationsSection = document.getElementById('applications');
-            applicationsSection.innerHTML = ''; // Очищаем существующий список
+            applicationsSection.innerHTML = '<h3>Непринятые заявки</h3>'; // Очищаем существующий список
 
             if (data.length === 0) {
-                applicationsSection.innerHTML = '<p>На данный момент нет новых заявок.</p>';
+                applicationsSection.innerHTML += '<p>На данный момент нет новых заявок.</p>';
             } else {
                 data.forEach(application => {
                     const applicationElement = document.createElement('div');
@@ -42,7 +42,7 @@ function fetchApplications() {
 // Функция для отображения деталей заявки в модальном окне
 function showApplicationDetails(application) {
     // Заполняем данные заявки в модальном окне
-    document.getElementById('familiya_zakazchika').textContent = application.familiya_zakazckika;
+    document.getElementById('familiya_zakazchika').textContent = application.familiya_zakazchika;
     document.getElementById('imya_zakazchika').textContent = application.imya_zakazchika;
     document.getElementById('otchestvo_zakazchika').textContent = application.otchestvo_zakazchika;
     document.getElementById('stasus_zakazchika').textContent = application.stasus_zakazchika;
@@ -50,6 +50,10 @@ function showApplicationDetails(application) {
     document.getElementById('email_zakazchika').textContent = application.email_zakazchika;
     document.getElementById('vid_prazdnika').textContent = application.vid_prazdnika;
     document.getElementById('data_provedeniya').textContent = new Date(application.data_provedeniya).toLocaleDateString();
+    document.getElementById('kolichestvo_chelovek').textContent = application.kolichestvo_chelovek;
+    document.getElementById('nachalo_provedeniya').textContent = application.nachalo_provedeniya;
+    document.getElementById('konec_provedeniya').textContent = application.konec_provedeniya;
+    document.getElementById('prodoljitelnost').textContent = `${application.prodoljitelnost} часов`;
 
     // Устанавливаем ID заявки для кнопки
     document.getElementById('takeApplicationBtn').setAttribute('data-id', application.id_zayavki);
@@ -61,7 +65,7 @@ function showApplicationDetails(application) {
 
 // Функция для отправки заявки в работу
 function takeApplication(applicationId) {
-    fetch(`/api/applications/${applicationId}/take`, {
+    fetch(`/api/application/accept?app=${applicationId}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

@@ -6,6 +6,9 @@ apiMap:
   GetEvents:
     url: "get/events"
     method: "GET"
+  AcceptApplication:
+    url: "update/app/admin"
+    method: "PUT"
 
 db:
   host_db: "localhost"

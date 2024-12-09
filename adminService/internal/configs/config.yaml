@@ -17,8 +17,12 @@ api:
   GetEvents:
     url: "api/applications"
     method: "GET"
+  AcceptApplication:
+    url: "api/application/accept"
+    method: "POST"
 
 accessExceptions:
   list:
     - ""
     - "api/applications"
+    - "api/applications/accept"

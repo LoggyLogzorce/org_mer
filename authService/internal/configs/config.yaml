@@ -9,6 +9,9 @@ apiMap:
   AuthAdminByToken:
     url: "auth/admin/token"
     method: "POST"
+  GetAdminIdByToken:
+    url: "get/admin/id"
+    method: "POST"
 
 db:
   host_db: "localhost"
