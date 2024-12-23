@@ -6,7 +6,7 @@
     <title>Интранет для организаторов праздников</title>
     <link rel="stylesheet" href="/css/homepage.css">
     <link rel="stylesheet" href="/bootstrap-5.3.3/dist/css/bootstrap.min.css">
-    <script src="/js/homepage.js" defer></script>
+    <script src="/js/tasks.js" defer></script>
 </head>
 <body>
 <header>
@@ -20,13 +20,13 @@
                 <h1><a class="navbar-brand col-lg-3 me-0" href="/">Панель управления мероприятиями</a></h1>
                 <ul class="navbar-nav col-lg-6 justify-content-lg-center">
                     <li class="nav-item">
-                        <a class="nav-link active" href="/">Главная</a>
+                        <a class="nav-link" href="/">Главная</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/clients">Клиенты</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/tasks">Мои заявки</a>
+                        <a class="nav-link active" href="/tasks">Мои заявки</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link disabled" aria-disabled="true">Отчёты</a>
@@ -43,7 +43,7 @@
 <main>
     <section id="applications">
         <div class="container">
-            <h2>Непринятые заявки</h2>
+            <h2>Заявки в работе</h2>
             <div class="row gy-3" id="applicationsList">
 
             </div>
@@ -74,7 +74,8 @@
                 <p><strong>Продолжительность:</strong> <span id="prodoljitelnost"></span></p>
             </div>
             <div class="modal-footer">
-                <button type="button" id="takeApplicationBtn" class="btn btn-success">Взять заявку</button>
+                <button type="button" id="editApplicationBtn" class="btn btn-success">Редактировать</button>
+                <button type="button" id="cancelApplicationBtn" class="btn btn-danger">Отказаться от выполнения</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
             </div>
         </div>

@@ -3,12 +3,15 @@ server:
   port: "8082"
 
 apiMap:
-  GetEvents:
-    url: "get/events"
+  GetApplications:
+    url: "get/applications"
     method: "GET"
   AcceptApplication:
     url: "update/app/admin"
     method: "PUT"
+  CancelApplication:
+    url: "cancel/app/admin"
+    method: "POST"
 
 db:
   host_db: "localhost"

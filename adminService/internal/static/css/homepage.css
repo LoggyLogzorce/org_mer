@@ -45,14 +45,19 @@ section {
     border: 1px solid #ddd;
 }
 
-#applications {
-    float: left;
-    width: 30%;
-    margin-right: 20px;
-}
-
+/* Убираем растяжение одной заявки */
 .application {
     border: 1px solid #ccc;
-    padding: 10px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.application h5 {
     margin-bottom: 10px;
+}
+
+#applicationsList {
+    margin-top: 20px;
 }

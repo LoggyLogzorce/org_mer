@@ -1,6 +1,6 @@
 // Функция для загрузки заявок с сервера и обновления списка
 function fetchApplications() {
-    fetch('/api/applications', {
+    fetch('/api/applications?search=my_tasks', {
         method: 'GET'
     })
         .then(response => response.json())
@@ -9,7 +9,7 @@ function fetchApplications() {
             applicationsList.innerHTML = ''; // Очищаем существующий список
 
             if (data.length === 0) {
-                applicationsList.innerHTML = '<p>На данный момент нет новых заявок.</p>';
+                applicationsList.innerHTML = '<p>На данный момент вы не работаете над заявками.</p>';
             } else {
                 data.forEach(application => {
                     const applicationElement = document.createElement('div');
@@ -56,15 +56,16 @@ function showApplicationDetails(application) {
     document.getElementById('konec_provedeniya').textContent = application.konec_provedeniya;
     document.getElementById('prodoljitelnost').textContent = `${application.prodoljitelnost} часа`;
 
-    document.getElementById('takeApplicationBtn').setAttribute('data-id', application.id_zayavki);
+    document.getElementById('editApplicationBtn').setAttribute('data-id', application.id_zayavki);
+    document.getElementById('cancelApplicationBtn').setAttribute('data-id', application.id_zayavki);
 
     const modal = new bootstrap.Modal(document.getElementById('applicationModal'));
     modal.show();
 }
 
 // Функция для отправки заявки в работу
-function takeApplication(applicationId) {
-    fetch(`/api/application/accept?app=${applicationId}`, {
+function cancelApplication(applicationId) {
+    fetch(`/api/application/cancel?app=${applicationId}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -72,7 +73,7 @@ function takeApplication(applicationId) {
     })
         .then(response => {
             if (response.ok) {
-                alert('Заявка успешно взята в работу!');
+                alert('Вы больше не работаете над этой заявкой.');
                 fetchApplications(); // Обновляем список заявок
                 const modal = bootstrap.Modal.getInstance(document.getElementById('applicationModal'));
                 modal.hide();
@@ -86,11 +87,11 @@ function takeApplication(applicationId) {
         });
 }
 
-// Добавление обработчика кнопки "Взять заявку в работу"
-document.getElementById('takeApplicationBtn').addEventListener('click', function () {
+// Добавление обработчика кнопки "Отказаться от заявки"
+document.getElementById('cancelApplicationBtn').addEventListener('click', function () {
     const applicationId = this.getAttribute('data-id');
     if (applicationId) {
-        takeApplication(applicationId);
+        cancelApplication(applicationId);
     } else {
         console.error('ID заявки не найден.');
     }

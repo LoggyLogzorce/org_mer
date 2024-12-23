@@ -26,3 +26,9 @@ func (h *Handler) HomePage(ctx *context.Context) {
 	http.ServeFile(ctx.Response, ctx.Request, "./internal/static/html/homepage.html")
 	return
 }
+
+func (h *Handler) TasksPage(ctx *context.Context) {
+	SetHeaders(ctx)
+	http.ServeFile(ctx.Response, ctx.Request, "./internal/static/html/tasks.html")
+	return
+}

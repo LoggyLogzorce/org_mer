@@ -9,20 +9,28 @@ handlers:
   HomePage:
     url: ""
     method: "GET"
+  TasksPage:
+    url: "tasks"
+    method: "GET"
 
 api:
   Auth:
     url: "api/auth/admin"
     method: "POST"
-  GetEvents:
+  GetApplications:
     url: "api/applications"
     method: "GET"
   AcceptApplication:
     url: "api/application/accept"
     method: "POST"
+  CancelApplication:
+    url: "api/application/cancel"
+    method: "POST"
 
 accessExceptions:
   list:
     - ""
+    - "tasks"
     - "api/applications"
     - "api/applications/accept"
+    - "api/application/cancel"
