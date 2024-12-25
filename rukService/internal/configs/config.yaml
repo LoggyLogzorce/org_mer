@@ -1,0 +1,32 @@
+server:
+  timeout: 10
+  port: "8888"
+
+handlers:
+  LoginPage:
+    url: "login"
+    method: "GET"
+  HomePage:
+    url: ""
+    method: "GET"
+
+api:
+  Auth:
+    url: "api/auth/ruk"
+    method: "POST"
+  GetApplications:
+    url: "api/applications"
+    method: "GET"
+  CreateDocx:
+    url: "api/create/docx"
+    method: "POST"
+  DownLoadReport:
+    url: "api/download-report"
+    method: "GET"
+
+accessExceptions:
+  list:
+    - ""
+    - "api/applications"
+    - "api/create/docx"
+    - "api/download-report"

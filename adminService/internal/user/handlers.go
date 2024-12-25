@@ -32,3 +32,9 @@ func (h *Handler) TasksPage(ctx *context.Context) {
 	http.ServeFile(ctx.Response, ctx.Request, "./internal/static/html/tasks.html")
 	return
 }
+
+func (h *Handler) EditApp(ctx *context.Context) {
+	SetHeaders(ctx)
+	http.ServeFile(ctx.Response, ctx.Request, "./internal/static/html/editApp.html")
+	return
+}

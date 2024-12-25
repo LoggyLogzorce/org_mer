@@ -1,0 +1,69 @@
+/* Сброс стилей для браузеров */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    padding-bottom: 20px;
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+section {
+    padding: 20px;
+}
+
+#tasks {
+    list-style: none;
+}
+
+#tasks li {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+/* Убираем растяжение одной заявки и добавляем стиль для карточек */
+.application {
+    border: 1px solid #ccc;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+}
+
+.application h5 {
+    margin-bottom: 10px;
+}
+
+/* Для блоков заявок */
+#unacceptedApplications, #inProgressApplications, #completedApplications {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.application {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+    .application {
+        width: 180%; /* Для 3 карточек на строку */
+        margin-right: 10px;
+    }
+}
+
+@media (min-width: 992px) {
+    .application {
+        width: 240%; /* Для 3 карточек на строку */
+        margin-right: 10px;
+    }
+}

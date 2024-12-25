@@ -29,6 +29,7 @@ func init() {
 	types[".jpg"] = true
 	types[".png"] = true
 	types[".map"] = true
+	types[".json"] = true
 
 	cfg = configs.Get()
 	urlMap = make(map[string]map[string]reflect.Value)

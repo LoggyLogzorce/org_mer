@@ -4,6 +4,7 @@ import (
 	"adminService/internal/context"
 	"bytes"
 	"encoding/json"
+	"io"
 	"log"
 	"net/http"
 )
@@ -13,6 +14,7 @@ func (h *Handler) Auth(ctx *context.Context) {
 	err := json.NewDecoder(ctx.Request.Body).Decode(&data)
 	if err != nil {
 		log.Println(err)
+		return
 	}
 
 	dataJson, err := json.Marshal(data)
@@ -50,6 +52,16 @@ func (h *Handler) Auth(ctx *context.Context) {
 }
 
 func AuthByToken(ctx *context.Context) bool {
+	// Чтение тела запроса и сохранение в переменной
+	body, err := io.ReadAll(ctx.Request.Body)
+	if err != nil {
+		log.Println("Ошибка чтения тела запроса:", err)
+		return false
+	}
+
+	// Восстановление тела запроса
+	ctx.Request.Body = io.NopCloser(bytes.NewBuffer(body))
+
 	token, err := ctx.Request.Cookie("token")
 	if err != nil {
 		log.Println(err)
@@ -67,7 +79,7 @@ func AuthByToken(ctx *context.Context) bool {
 		return false
 	}
 
-	err = json.NewDecoder(ctx.Request.Body).Decode(res)
+	err = json.NewDecoder(res.Body).Decode(res)
 	val := res.Header.Get("Authorization")
 
 	if val != "" {

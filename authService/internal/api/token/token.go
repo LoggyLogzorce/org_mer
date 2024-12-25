@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-var secretKey = []byte("secret_key")
+var secretKey = []byte("rukovodstvo")
 
 func CreateToken(uid uint8, role string) string {
 	claims := jwt.MapClaims{
@@ -28,7 +28,7 @@ func CreateToken(uid uint8, role string) string {
 	return tokenString
 }
 
-func IsTokenValid(tokenString string) bool {
+func IsTokenValid(tokenString string, role string) bool {
 	// Парсинг токена
 	token, err := ParseToken(tokenString)
 	if err != nil {
@@ -46,7 +46,7 @@ func IsTokenValid(tokenString string) bool {
 	}
 
 	userRole, ok := claims["role"]
-	if !ok || userRole != "sotrudnik" {
+	if !ok || userRole != role {
 		return false
 	}
 

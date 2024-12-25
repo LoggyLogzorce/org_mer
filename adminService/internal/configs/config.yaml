@@ -12,6 +12,9 @@ handlers:
   TasksPage:
     url: "tasks"
     method: "GET"
+  EditApp:
+    url: "edit/app"
+    method: "GET"
 
 api:
   Auth:
@@ -26,6 +29,12 @@ api:
   CancelApplication:
     url: "api/application/cancel"
     method: "POST"
+  GetPrazdnik:
+    url: "api/get/holiday"
+    method: "GET"
+  SaveHoliday:
+    url: "api/save/holiday"
+    method: "POST"
 
 accessExceptions:
   list:
@@ -34,3 +43,6 @@ accessExceptions:
     - "api/applications"
     - "api/applications/accept"
     - "api/application/cancel"
+    - "api/get/holiday"
+    - "edit/app"
+    - "api/save/holiday"

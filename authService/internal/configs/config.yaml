@@ -13,10 +13,17 @@ apiMap:
     url: "get/admin/id"
     method: "POST"
 
+  AuthRukovodstvo:
+    url: "auth/ruk"
+    method: "POST"
+  AuthRukByToken:
+    url: "auth/ruk/token"
+    method: "POST"
+
 db:
   host_db: "localhost"
   port_db: "5432"
-  user: "postgres"
-  password: "23032004tepor"
+  user: "auth_service"
+  password: "auth_123"
   dbname: "organizaciya_meropriyatiy"
   sslmode: "disable"

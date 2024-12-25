@@ -61,7 +61,7 @@ func (h *Handler) AuthAdminByToken(ctx *context.Context) {
 		Ok: false,
 	}
 
-	if token.IsTokenValid(data["token"]) {
+	if token.IsTokenValid(data["token"], "sotrudnik") {
 		res = &response{
 			Ok: true,
 		}

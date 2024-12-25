@@ -12,11 +12,17 @@ apiMap:
   CancelApplication:
     url: "cancel/app/admin"
     method: "POST"
+  GetPrazdnik:
+    url: "get/holiday"
+    method: "GET"
+  SaveHoliday:
+    url: "save/holiday"
+    method: "POST"
 
 db:
   host_db: "localhost"
   port_db: "5432"
-  user: "postgres"
-  password: "23032004tepor"
+  user: "application_service"
+  password: "application_123"
   dbname: "organizaciya_meropriyatiy"
   sslmode: "disable"

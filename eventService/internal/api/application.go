@@ -29,10 +29,12 @@ func (h *Handler) GetApplications(ctx *context.Context) {
 	}
 
 	if search == "" {
-		applications = storage.GetAllApplications()
+		applications = storage.GetAllApplicationsInWork()
 	} else if search == "my_tasks" && uid != "0" {
 		sid := storage.GetSotrudnik(pid)
 		applications = storage.GetMyApplications(sid)
+	} else if search == "all" {
+		applications = storage.GetAllApplications()
 	}
 
 	ctx.Response.Header().Set("Content-Type", "application/json")

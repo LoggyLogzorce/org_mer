@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Интранет для организаторов праздников</title>
+  <link rel="stylesheet" href="/css/homepage.css">
+  <link rel="stylesheet" href="/bootstrap-5.3.3/dist/css/bootstrap.min.css">
+  <script src="/js/homepage.js" defer></script>
+</head>
+<body>
+<header>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary rounded" aria-label="Thirteenth navbar example">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample11" aria-controls="navbarsExample11" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse d-lg-flex" id="navbarsExample11">
+        <h1><a class="navbar-brand col-lg-3 me-0" href="/">Панель управления мероприятиями</a></h1>
+        <ul class="navbar-nav col-lg-6 justify-content-lg-center">
+          <li class="nav-item">
+            <a class="nav-link active" href="/">Главная</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/tasks">Мои заявки</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" aria-disabled="true">Отчёты</a>
+          </li>
+        </ul>
+        <div class="d-lg-flex col-lg-3 justify-content-lg-end">
+          <button class="btn btn-primary" onclick="logout()">Выйти</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section id="applications">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h2>Непринятые заявки</h2>
+          <div class="list-group" id="unacceptedApplications">
+            <!-- Непринятые заявки будут здесь -->
+          </div>
+        </div>
+        <div class="col-md-4">
+          <h2>Заявки в работе</h2>
+          <div class="list-group" id="inProgressApplications">
+            <!-- Заявки в работе будут здесь -->
+          </div>
+        </div>
+        <div class="col-md-4">
+          <h2>Готовые заявки</h2>
+          <div class="list-group" id="completedApplications">
+            <!-- Готовые заявки будут здесь -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="modal fade" id="applicationModal" tabindex="-1" aria-labelledby="applicationModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="applicationModalLabel">Детали заявки</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Фамилия:</strong> <span id="familiya_zakazchika"></span></p>
+        <p><strong>Имя:</strong> <span id="imya_zakazchika"></span></p>
+        <p><strong>Отчество:</strong> <span id="otchestvo_zakazchika"></span></p>
+        <p><strong>Статус:</strong> <span id="stasus_zakazchika"></span></p>
+        <p><strong>Телефон:</strong> <span id="telephone_zakazchika"></span></p>
+        <p><strong>Email:</strong> <span id="email_zakazchika"></span></p>
+        <p><strong>Мероприятие:</strong> <span id="vid_prazdnika"></span></p>
+        <p><strong>Дата проведения:</strong> <span id="data_provedeniya"></span></p>
+        <p><strong>Количество человек:</strong> <span id="kolichestvo_chelovek"></span></p>
+        <p><strong>Время начала:</strong> <span id="nachalo_provedeniya"></span></p>
+        <p><strong>Время конца:</strong> <span id="konec_provedeniya"></span></p>
+        <p><strong>Продолжительность:</strong> <span id="prodoljitelnost"></span></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/bootstrap-5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

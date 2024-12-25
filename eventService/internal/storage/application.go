@@ -7,7 +7,7 @@ import (
 	"strconv"
 )
 
-func GetAllApplications() []models.Application {
+func GetAllApplicationsInWork() []models.Application {
 	var applications []models.Application
 	var IdStatusaZayavki uint8
 
@@ -140,4 +140,24 @@ func CancelApplication(uid, app string) bool {
 	db.DB().Save(&application)
 	log.Println("Сотрудник id =", idS, "отказался от работы над заявкой №", application.IdZayavki)
 	return true
+}
+
+func GetAllApplications() []models.Application {
+	var applications []models.Application
+
+	db.DB().
+		Preload("Zakazchik").      // Загрузить данные из таблицы zakazchiki
+		Preload("VidiPrazdnikov"). // Загрузить данные из таблицы vidi_prazdnikov
+		Preload("Zakazchik.StatusZakazchika").
+		Preload("Sotrudnik").
+		Preload("StatusZayavki").
+		Find(&applications)
+
+	for i := range applications {
+		applications[i].DataProvedeniya = applications[i].DataProvedeniya[0:10]
+		applications[i].NachaloProvedeniya = applications[i].NachaloProvedeniya[0:5]
+		applications[i].KonecProvedeniya = applications[i].KonecProvedeniya[0:5]
+	}
+
+	return applications
 }

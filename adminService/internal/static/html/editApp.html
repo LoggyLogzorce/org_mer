@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактирование Заявки</title>
+    <link rel="stylesheet" href="/css/homepage.css">
+    <link rel="stylesheet" href="/bootstrap-5.3.3/dist/css/bootstrap.min.css">
+    <script src="/js/editApp.js" defer></script>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary rounded" aria-label="Navigation">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample" aria-controls="navbarsExample" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse d-lg-flex" id="navbarsExample">
+                <h1><a class="navbar-brand col-lg-3 me-0" href="/">Панель управления мероприятиями</a></h1>
+                <ul class="navbar-nav col-lg-6 justify-content-lg-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/tasks">Мои заявки</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" aria-disabled="true">Отчёты</a>
+                    </li>
+                </ul>
+                <div class="d-lg-flex col-lg-3 justify-content-lg-end">
+                    <button class="btn btn-primary" onclick="logout()">Выйти</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <section class="container mt-4">
+        <h2 class="text-center mb-4">Редактирование заявки на организацию мероприятия</h2>
+        <div class="row g-3">
+            <!-- Left Block: Readonly Fields -->
+            <div class="col-md-6">
+                <div class="card p-3">
+                    <label for="idZayavki">ID заявки</label>
+                    <input type="number" class="form-control" id="idZayavki" name="id_zayavki" readonly>
+
+                    <label for="idZakazchika" class="mt-3">ФИО заказчика</label>
+                    <input type="text" class="form-control" id="idZakazchika" name="id_zakazchika" readonly>
+
+                    <label for="idVidaPrazdnika" class="mt-3">Вид праздника</label>
+                    <input type="text" class="form-control" id="idVidaPrazdnika" name="id_vida_prazdnika" readonly>
+
+                    <label for="telephoneZakazchik" class="mt-3">Телефон заказчика</label>
+                    <input type="number" class="form-control" id="telephoneZakazchik" name="telephoneZakazchik" readonly>
+
+                    <label for="emailZakazchik" class="mt-3">Email заказчика</label>
+                    <input type="text" class="form-control" id="emailZakazchik" name="emailZakazchik" readonly>
+
+                    <label for="dataProvedeniya" class="mt-3">Дата проведения</label>
+                    <input type="date" class="form-control" id="dataProvedeniya" name="data_provedeniya" readonly>
+
+                    <label for="kolichestvoChelovek" class="mt-3">Количество человек</label>
+                    <input type="text" class="form-control" id="kolichestvoChelovek" name="kolichestvo_chelovek" readonly>
+
+                    <label for="nachaloProvedeniya" class="mt-3">Начало проведения</label>
+                    <input type="time" class="form-control" id="nachaloProvedeniya" name="nachalo_provedeniya" readonly>
+
+                    <label for="konecProvedeniya" class="mt-3">Конец проведения</label>
+                    <input type="time" class="form-control" id="konecProvedeniya" name="konec_provedeniya" readonly>
+
+                    <label for="prodoljitelnost" class="mt-3">Продолжительность (часы)</label>
+                    <input type="number" class="form-control" id="prodoljitelnost" name="prodoljitelnost" readonly>
+                </div>
+            </div>
+
+            <!-- Right Block: Editable Fields -->
+            <div class="col-md-6">
+                <div class="card p-3">
+                    <label for="idPloshadki" class="mt-3">Площадка</label>
+                    <select id="idPloshadki" name="idPloshadki" class="form-select">
+                    </select>
+
+                    <label for="idStatusaZayavki" class="mt-3">Статус заявки</label>
+                    <select id="idStatusaZayavki" name="id_statusa_zayavki" class="form-select">
+                    </select>
+
+                    <label for="vedushiy" class="mt-3">Ведущий</label>
+                    <select id="vedushiy" name="vedushiy" class="form-select">
+                    </select>
+
+                    <label class="mt-3">Дополнительные услуги</label>
+                    <div id="dopUslugiContainer"></div>
+
+                    <button id="saveChanges" type="submit" class="btn btn-primary mt-4 w-100">Сохранить изменения</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script src="/bootstrap-5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
