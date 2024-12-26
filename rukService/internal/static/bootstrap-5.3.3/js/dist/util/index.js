@@ -1,5 +1,5 @@
 /*!
-  * Bootstrap index.js v5.3.3 (https://getbootstrap.com/)
+  * Bootstrap index_auth.js v5.3.3 (https://getbootstrap.com/)
   * Copyright 2011-2024 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
   */
@@ -11,7 +11,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * Bootstrap util/index.js
+   * Bootstrap util/index_auth.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
@@ -278,4 +278,4 @@
   Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
 
 }));
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index_auth.js.map

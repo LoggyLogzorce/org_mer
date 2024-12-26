@@ -20,8 +20,8 @@
     - name: Parcel
       description: "Import and bundle Bootstrap's source Sass and JavaScript via Parcel."
       url: /examples/tree/main/parcel
-      indexPath: src/index.html
-      indexPath: src/index.html
+      indexPath: src/index_auth.html
+      indexPath: src/index_auth.html
     - name: React
       description: "Import and bundle Bootstrap's source Sass and JavaScript with React, Next.js, and React Bootstrap."
       url: /examples/tree/main/react-nextjs
@@ -35,7 +35,7 @@
     - name: Webpack
       description: "Import and bundle Bootstrap's source Sass and JavaScript with Webpack."
       url: /examples/tree/main/webpack
-      indexPath: src/index.html
+      indexPath: src/index_auth.html
 
 - category: Snippets
   description: "Common patterns for building sites and apps that build on existing components and utilities with custom CSS and more."
@@ -83,7 +83,7 @@
     - name: Blog
       description: "Magazine like blog template with header, navigation, featured content."
     - name: Dashboard
-      description: "Basic admin dashboard shell with fixed sidebar and navbar."
+      description: "Basic auth dashboard shell with fixed sidebar and navbar."
     - name: Sign-in
       description: "Custom form layout and design for a simple sign in form."
     - name: Sticky footer
@@ -133,7 +133,7 @@
     - name: Blog RTL
       description: "Magazine like blog template with header, navigation, featured content."
     - name: Dashboard RTL
-      description: "Basic admin dashboard shell with fixed sidebar and navbar."
+      description: "Basic auth dashboard shell with fixed sidebar and navbar."
 
 - category: Integrations
   description: "Integrations with external libraries."

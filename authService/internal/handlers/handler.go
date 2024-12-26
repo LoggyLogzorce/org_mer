@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"authService/internal/api/admin"
+	"authService/internal/api/auth"
 	"authService/internal/configs"
 	"authService/internal/context"
 	"log"
@@ -9,7 +9,7 @@ import (
 	"reflect"
 )
 
-var hdl *admin.Handler
+var hdl *auth.Handler
 var apiMap map[string]map[string]reflect.Value
 
 func init() {
@@ -19,7 +19,7 @@ func init() {
 
 	maps := cfg.ApiMap
 
-	hdl = &admin.Handler{}
+	hdl = &auth.Handler{}
 	_struct := reflect.TypeOf(hdl)
 
 	for methodNum := 0; methodNum < _struct.NumMethod(); methodNum++ {

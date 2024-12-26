@@ -126,7 +126,6 @@ func CancelApplication(uid, app string) bool {
 
 	idS := GetSotrudnik(pid)
 
-	//TODO изменить на функцию в базе
 	var status models.StatusZayavki
 	db.DB().Where("naimenovanie_statusa = 'Не принята'").First(&status)
 

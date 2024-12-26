@@ -1,0 +1,42 @@
+server:
+  timeout: 10
+  port: "8889"
+
+handlers:
+  HomePage:
+    url: ""
+    method: "GET"
+  Home:
+    url: "homepage"
+    method: "GET"
+  LoginPage:
+    url: "login"
+    method: "GET"
+  RegisterPage:
+    url: "registration"
+    method: "GET"
+  Uslugi:
+    url: "uslugi"
+    method: "GET"
+
+api:
+  Auth:
+    url: "api/auth/user"
+    method: "POST"
+  GetVidiPrazdnikov:
+    url: "api/get/vidi-prazdnikov"
+    method: "GET"
+  GetUslugi:
+    url: "api/get/dop-uslugi"
+    method: "GET"
+  GetStatusi:
+    url: "api/get/statusi-zakazchikov"
+    method: "GET"
+  Register:
+    url: "api/register/user"
+    method: "POST"
+
+
+accessExceptions:
+  list:
+    - ""

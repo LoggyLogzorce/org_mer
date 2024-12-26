@@ -20,6 +20,17 @@ apiMap:
     url: "auth/ruk/token"
     method: "POST"
 
+  AuthUser:
+    url: "auth/user"
+    method: "POST"
+  AuthUserByToken:
+    url: "auth/user/token"
+    method: "POST"
+
+  RegisterUser:
+    url: "register/user"
+    method: "POST"
+
 db:
   host_db: "localhost"
   port_db: "5432"

@@ -59,7 +59,7 @@ const config = {
     clearContext: false
   },
   files: [
-    'node_modules/hammer-simulator/index.js',
+    'node_modules/hammer-simulator/index_auth.js',
     {
       pattern: 'js/tests/unit/**/!(jquery).spec.js',
       watched: !BROWSERSTACK

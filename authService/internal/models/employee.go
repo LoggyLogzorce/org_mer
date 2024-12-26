@@ -15,5 +15,5 @@ type Employee struct {
 }
 
 func (_ *Employee) TableName() string {
-	return "zakazchiki"
+	return "sotrudniki"
 }

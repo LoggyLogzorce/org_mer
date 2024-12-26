@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-var secretKey = []byte("rukovodstvo")
+var secretKey = []byte("secret-key")
 
 func CreateToken(uid uint8, role string) string {
 	claims := jwt.MapClaims{

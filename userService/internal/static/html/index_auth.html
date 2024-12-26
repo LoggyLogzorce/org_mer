@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+<head>
+    <script src="/js/color-modes.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.122.0">
+    <title>Организация праздников</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
+
+    <script src="/js/index_auth.js"></script>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+    <link rel="stylesheet" href="/css/headers.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+
+        .b-example-divider {
+            width: 100%;
+            height: 3rem;
+            background-color: rgba(0, 0, 0, .1);
+            border: solid rgba(0, 0, 0, .15);
+            border-width: 1px 0;
+            box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+        }
+
+        .b-example-vr {
+            flex-shrink: 0;
+            width: 1.5rem;
+            height: 100vh;
+        }
+
+        .bi {
+            vertical-align: -.125em;
+            fill: currentColor;
+        }
+
+        .nav-scroller {
+            position: relative;
+            z-index: 2;
+            height: 2.75rem;
+            overflow-y: hidden;
+        }
+
+        .nav-scroller .nav {
+            display: flex;
+            flex-wrap: nowrap;
+            padding-bottom: 1rem;
+            margin-top: -1px;
+            overflow-x: auto;
+            text-align: center;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .btn-bd-primary {
+            --bd-violet-bg: #712cf9;
+            --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+            --bs-btn-font-weight: 600;
+            --bs-btn-color: var(--bs-white);
+            --bs-btn-bg: var(--bd-violet-bg);
+            --bs-btn-border-color: var(--bd-violet-bg);
+            --bs-btn-hover-color: var(--bs-white);
+            --bs-btn-hover-bg: #6528e0;
+            --bs-btn-hover-border-color: #6528e0;
+            --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+            --bs-btn-active-color: var(--bs-btn-hover-color);
+            --bs-btn-active-bg: #5a23c8;
+            --bs-btn-active-border-color: #5a23c8;
+        }
+
+        .bd-mode-toggle {
+            z-index: 1500;
+        }
+
+        .bd-mode-toggle .dropdown-menu .active .bi {
+            display: block !important;
+        }
+
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+
+        .b-example-divider {
+            width: 100%;
+            height: 3rem;
+            background-color: rgba(0, 0, 0, .1);
+            border: solid rgba(0, 0, 0, .15);
+            border-width: 1px 0;
+            box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+        }
+
+        .b-example-vr {
+            flex-shrink: 0;
+            width: 1.5rem;
+            height: 100vh;
+        }
+
+        .bi {
+            vertical-align: -.125em;
+            fill: currentColor;
+        }
+
+        .nav-scroller {
+            position: relative;
+            z-index: 2;
+            height: 2.75rem;
+            overflow-y: hidden;
+        }
+
+        .nav-scroller .nav {
+            display: flex;
+            flex-wrap: nowrap;
+            padding-bottom: 1rem;
+            margin-top: -1px;
+            overflow-x: auto;
+            text-align: center;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .btn-bd-primary {
+            --bd-violet-bg: #712cf9;
+            --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+            --bs-btn-font-weight: 600;
+            --bs-btn-color: var(--bs-white);
+            --bs-btn-bg: var(--bd-violet-bg);
+            --bs-btn-border-color: var(--bd-violet-bg);
+            --bs-btn-hover-color: var(--bs-white);
+            --bs-btn-hover-bg: #6528e0;
+            --bs-btn-hover-border-color: #6528e0;
+            --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+            --bs-btn-active-color: var(--bs-btn-hover-color);
+            --bs-btn-active-bg: #5a23c8;
+            --bs-btn-active-border-color: #5a23c8;
+        }
+
+        .bd-mode-toggle {
+            z-index: 1500;
+        }
+
+        .bd-mode-toggle .dropdown-menu .active .bi {
+            display: block !important;
+        }
+    </style>
+
+
+    <!-- Custom styles for this template -->
+    <link href="/css/carousel.css" rel="stylesheet">
+</head>
+<body>
+<header class="p-3 mb-3 border-bottom">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+            <!-- Навигация -->
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="/userService/internal/static" class="nav-link px-2 link-secondary">Главная</a></li>
+                <li><a href="#vidi-prazdnikov" class="nav-link px-2 link-body-emphasis">Праздники</a></li>
+                <li><a href="/uslugi" class="nav-link px-2 link-body-emphasis">Услуги</a></li>
+            </ul>
+
+            <!-- Блок с кнопками для авторизованного пользователя -->
+            <div class="d-flex align-items-center">
+                <button id="logout-button" onclick="logout()" class="btn btn-outline-danger me-2" style="display: inline-block;">Выйти</button>
+                <a href="/profile" id="profile-button" class="btn btn-outline-secondary"
+                   style="display: inline-block;">Профиль</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true"
+                    aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+                     aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <rect width="100%" height="100%" fill="var(--bs-secondary-color)"/>
+                </svg>
+                <div class="container">
+                    <div class="carousel-caption text-start">
+                        <h1>Организуем ваш идеальный праздник.</h1>
+                        <p class="opacity-75">Доверьте нам создание незабываемых событий: от свадеб до корпоративов.</p>
+                        <p><a class="btn btn-lg btn-primary" href="#">Узнать больше</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+                     aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <rect width="100%" height="100%" fill="var(--bs-secondary-color)"/>
+                </svg>
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>Профессиональная команда.</h1>
+                        <p>Мы позаботимся обо всех деталях, чтобы вы наслаждались своим событием.</p>
+                        <p><a class="btn btn-lg btn-primary" href="#">Позвонить нам</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+                     aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <rect width="100%" height="100%" fill="var(--bs-secondary-color)"/>
+                </svg>
+                <div class="container">
+                    <div class="carousel-caption text-end">
+                        <h1>Создаем радость и улыбки.</h1>
+                        <p>От больших мероприятий до уютных вечеринок — мы с вами на каждом шагу.</p>
+                        <p><a class="btn btn-lg btn-primary" href="#">Посмотреть галерею</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+
+    <!-- Marketing messaging and featurettes
+    ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+    <div class="container marketing">
+
+        <!-- Three columns of text below the carousel -->
+        <div class="row">
+            <div class="col-lg-4">
+                <img src="/image/th.jpeg" class="bd-placeholder-img rounded-circle" width="140" height="140"
+                     alt="Праздники на любой вкус">
+                <h2 class="fw-normal">Праздники на любой вкус</h2>
+                <p>Создаем яркие и незабываемые моменты для любого события. Отмечайте важные даты с нами!</p>
+            </div><!-- /.col-lg-4 -->
+            <div class="col-lg-4">
+                <img src="/image/th%20(1).jpeg" class="bd-placeholder-img rounded-circle" width="140" height="140"
+                     alt="Индивидуальный подход">
+                <h2 class="fw-normal">Индивидуальный подход</h2>
+                <p>Мы внимательно слушаем ваши пожелания, чтобы воплотить их в реальность и превзойти ожидания.</p>
+            </div><!-- /.col-lg-4 -->
+            <div class="col-lg-4">
+                <img src="/image/th%20(2).jpeg" class="bd-placeholder-img rounded-circle" width="140" height="140"
+                     alt="Эмоции и воспоминания">
+                <h2 class="fw-normal">Эмоции и воспоминания</h2>
+                <p>Каждое наше мероприятие оставляет теплые эмоции и воспоминания на долгие годы.</p>
+            </div><!-- /.col-lg-4 -->
+        </div><!-- /.row -->
+
+        <div id="events-container" class="row"></div>
+
+        <div id="dop-uslugi" class="row"></div>
+
+        <div class="modal fade" id="applicationModal" tabindex="-1" aria-labelledby="applicationModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="applicationModalLabel">Форма заявки</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="d-flex">
+                                <div>
+                                    <div class="mb-3">
+                                        <label for="date" class="form-label">Дата проведения</label>
+                                        <input type="date" class="form-control" id="date" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="nachalo" class="form-label">Начало проведения</label>
+                                        <input type="time" class="form-control" id="nachalo" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="konec" class="form-label">Конец проведения</label>
+                                        <input type="time" class="form-control" id="konec" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="prodoljitelnost" class="form-label">Если пока не знаете точное
+                                            время, можете указать примерную продолжительность мероприятия в
+                                            часах</label>
+                                        <input type="number" class="form-control" id="prodoljitelnost" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="additional-services" class="form-label">Дополнительные услуги</label>
+                                        <div id="additional-services">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                        <button type="submit" class="btn btn-primary">Отправить заявку</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="container">
+        <p class="float-end"><a href="#">Back to top</a></p>
+    </footer>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</body>
+</html>
