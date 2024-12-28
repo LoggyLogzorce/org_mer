@@ -26,6 +26,9 @@ apiMap:
   AuthUserByToken:
     url: "auth/user/token"
     method: "POST"
+  GetCustomerIdByToken:
+    url: "get/customer/id"
+    method: "POST"
 
   RegisterUser:
     url: "register/user"

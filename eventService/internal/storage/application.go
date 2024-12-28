@@ -3,8 +3,10 @@ package storage
 import (
 	"eventService/internal/db"
 	"eventService/internal/models"
+	"fmt"
 	"log"
 	"strconv"
+	"strings"
 )
 
 func GetAllApplicationsInWork() []models.Application {
@@ -159,4 +161,61 @@ func GetAllApplications() []models.Application {
 	}
 
 	return applications
+}
+
+func SaveApplication(data models.SendApplication) error {
+	dopUslugiStr := fmt.Sprintf("{%v}", strings.Join(data.DopUslugi, ","))
+
+	sql := `SELECT add_application(
+		?, ?, ?, ?, ?, ?, ?::integer[])`
+
+	if err := db.DB().Exec(sql, data.IdVidaPrazdnika, data.IdPolzovatelya, data.Kolichestvo, data.Date, data.Nachalo,
+		data.Konec, dopUslugiStr).Error; err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func GetCustomerApplications(uid string) models.CustomerApplication {
+	var customerApplications models.CustomerApplication
+	var applications []models.Application
+	var prazdniki []models.Prazdnik
+	uidInt, err := strconv.ParseUint(uid, 10, 8)
+	if err != nil {
+		log.Println(err)
+		return customerApplications
+	}
+
+	err = db.DB().
+		Preload("Zakazchik"). // Загрузить данные из таблицы zakazchiki
+		Preload("Zakazchik.StatusZakazchika").
+		Preload("VidiPrazdnikov"). // Загрузить данные из таблицы vidi_prazdnikov
+		Preload("StatusZayavki").
+		Joins("inner join zakazchiki on zayavki.id_zakazchika = zakazchiki.id_zakazchika").
+		Where("zakazchiki.id_polzovatelya = ? and zayavki.id_statusa_zayavki = ?", uint8(uidInt), 1).
+		Find(&applications).Error
+	if err != nil {
+		log.Println(err)
+		return customerApplications
+	}
+
+	err = db.DB().Preload("Zayavka").
+		Preload("Zayavka.Sotrudnik").
+		Preload("Zayavka.VidiPrazdnikov").
+		Preload("Zayavka.Zakazchik").
+		Preload("Zayavka.Zakazchik.StatusZakazchika").
+		Preload("Vedushiy").
+		Preload("Ploshadka").
+		Preload("Ploshadka.Address").
+		Preload("Zayavka.StatusZayavki").
+		Joins("join zayavki on prazdniki.id_zayavki = zayavki.id_zayavki "+
+			"join zakazchiki on zayavki.id_zakazchika = zakazchiki.id_zakazchika").
+		Where("zakazchiki.id_polzovatelya = ?", uint8(uidInt)).
+		First(&prazdniki).Error
+
+	customerApplications.Prazdniki = prazdniki
+	customerApplications.Applications = applications
+
+	return customerApplications
 }

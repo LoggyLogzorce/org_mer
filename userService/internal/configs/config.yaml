@@ -15,8 +15,8 @@ handlers:
   RegisterPage:
     url: "registration"
     method: "GET"
-  Uslugi:
-    url: "uslugi"
+  Profile:
+    url: "profile"
     method: "GET"
 
 api:
@@ -35,8 +35,17 @@ api:
   Register:
     url: "api/register/user"
     method: "POST"
+  SendApplications:
+    url: "api/send-application"
+    method: "POST"
+  GetApplications:
+    url: "api/user/applications"
+    method: "GET"
 
 
 accessExceptions:
   list:
     - ""
+    - "profile"
+    - "api/send-application"
+    - "api/get/applications"

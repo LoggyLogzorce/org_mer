@@ -7,10 +7,10 @@ apiMap:
     url: "get/applications"
     method: "GET"
   AcceptApplication:
-    url: "update/app/auth"
+    url: "update/app/admin"
     method: "PUT"
   CancelApplication:
-    url: "cancel/app/auth"
+    url: "cancel/app/admin"
     method: "POST"
   GetPrazdnik:
     url: "get/holiday"
@@ -26,6 +26,12 @@ apiMap:
     method: "GET"
   GetStatusiZakazchikov:
     url: "get/statusi-zakazchikov"
+    method: "GET"
+  SaveApplication:
+    url: "save/application"
+    method: "POST"
+  GetCustomerApplications:
+    url: "get/customer/applications"
     method: "GET"
 
 

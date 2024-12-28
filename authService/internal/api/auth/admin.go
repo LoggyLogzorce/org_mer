@@ -5,7 +5,6 @@ import (
 	"authService/internal/context"
 	"authService/internal/storage/user"
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 )
@@ -25,13 +24,7 @@ func (h *Handler) AuthAdmin(ctx *context.Context) {
 		return
 	}
 
-	res = &response{
-		Ok:    false,
-		Token: "",
-	}
-
 	u := user.GetUser(data)
-	fmt.Println(u)
 	if u.IDPolzovatelya != 0 && u.Rola.NaimenovanieRoli == "sotrudnik" {
 		tokenString := token.CreateToken(u.IDPolzovatelya, u.Rola.NaimenovanieRoli)
 
@@ -48,7 +41,11 @@ func (h *Handler) AuthAdmin(ctx *context.Context) {
 		return
 	}
 
-	ctx.Response.WriteHeader(401)
+	ctx.Response.Header().Set("Content-Type", "application/json")
+	err := json.NewEncoder(ctx.Response).Encode(&res)
+	if err != nil {
+		log.Println(err)
+	}
 	return
 }
 

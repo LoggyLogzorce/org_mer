@@ -33,6 +33,12 @@ func (h *Handler) Auth(ctx *context.Context) {
 	err = json.NewDecoder(ctx.Request.Body).Decode(res)
 	token := res.Header.Get("Authorization")
 
+	response := struct {
+		Ok bool `json:"ok"`
+	}{
+		Ok: false,
+	}
+
 	if token != "" {
 		cookie := &http.Cookie{
 			Name:  "token",
@@ -41,16 +47,15 @@ func (h *Handler) Auth(ctx *context.Context) {
 		}
 		http.SetCookie(ctx.Response, cookie)
 
-		response := struct {
-			Ok bool `json:"ok"`
-		}{
-			Ok: true,
-		}
+		response.Ok = true
+
 		ctx.Response.Header().Set("Content-Type", "application/json")
 		err = json.NewEncoder(ctx.Response).Encode(response)
 		return
 	}
 
+	ctx.Response.Header().Set("Content-Type", "application/json")
+	err = json.NewEncoder(ctx.Response).Encode(response)
 	ctx.Response.WriteHeader(401)
 	return
 }

@@ -79,9 +79,13 @@ func (h *Handler) RegisterUser(ctx *context.Context) {
 		return
 	}
 
-	u := user.GetUser(data)
-
-	if u.IDPolzovatelya != 0 {
+	userInDb := user.GetUserByLogin(data)
+	if userInDb.IDPolzovatelya != 0 {
+		ctx.Response.Header().Set("Content-Type", "application/json")
+		err := json.NewEncoder(ctx.Response).Encode(&res)
+		if err != nil {
+			log.Println(err)
+		}
 		http.Error(ctx.Response, "user already exists", http.StatusConflict)
 		return
 	}
@@ -103,5 +107,30 @@ func (h *Handler) RegisterUser(ctx *context.Context) {
 	}
 
 	ctx.Response.WriteHeader(http.StatusCreated)
+	return
+}
+
+func (h *Handler) GetCustomerIdByToken(ctx *context.Context) {
+	var data map[string]string
+	if err := json.NewDecoder(ctx.Request.Body).Decode(&data); err != nil {
+		http.Error(ctx.Response, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	uid, err := token.GetUidByToken(data["token"])
+	ctx.Response.Header().Set("Content-Type", "application/json")
+	if err != nil {
+		err := json.NewEncoder(ctx.Response).Encode(&res)
+		if err != nil {
+			log.Println(err)
+		}
+
+	}
+
+	res = &response{
+		Uid: uid,
+		Ok:  true,
+	}
+	err = json.NewEncoder(ctx.Response).Encode(&res)
 	return
 }

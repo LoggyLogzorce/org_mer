@@ -29,3 +29,18 @@ type StatusZayavki struct {
 func (_ *StatusZayavki) TableName() string {
 	return "statusi_zayavok"
 }
+
+type SendApplication struct {
+	IdVidaPrazdnika string   `json:"holidayId"`
+	IdPolzovatelya  uint8    `json:"idPolzovatelya"`
+	Kolichestvo     string   `json:"kolichestvo"`
+	Date            string   `json:"date"`
+	Nachalo         string   `json:"nachalo"`
+	Konec           string   `json:"konec"`
+	DopUslugi       []string `json:"additionalServices"`
+}
+
+type CustomerApplication struct {
+	Prazdniki    []Prazdnik    `json:"prazdniki"`
+	Applications []Application `json:"applications"`
+}

@@ -36,7 +36,7 @@ loginForm.addEventListener('submit', (event) => {
             if (data.ok) {
                 window.location.href = '/';
             } else {
-                errorMessage.textContent = 'Неверный логин или пароль';
+                errorMessage.textContent = 'Данный email уже используется';
             }
         })
         .catch(error => {

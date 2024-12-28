@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
                   <h5 class="card-title">${holiday.naimenovanie_vida}</h5>
                   <p class="card-text">${holiday.opisanie}</p>
                   <p class="card-text">От ${holiday.summa} рублей.</p>
-                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#applicationModal">
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#applicationModal" data-holiday-id="${holiday.id_vida}">
                         Оставить заявку
                   </button>
                 </div>
@@ -103,7 +103,72 @@ document.addEventListener("DOMContentLoaded", function () {
     fetchUslugiData();
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+    let selectedHolidayId = null;
+
+    // Обработчик открытия модального окна
+    const applicationModal = document.getElementById('applicationModal');
+    applicationModal.addEventListener('show.bs.modal', function (event) {
+        const button = event.relatedTarget; // Кнопка, которая открыла модальное окно
+        selectedHolidayId = button.getAttribute('data-holiday-id'); // Получаем ID праздника
+    });
+
+    // Обработчик кнопки "Отправить заявку"
+    const submitButton = applicationModal.querySelector('button[type="submit"]');
+    submitButton.addEventListener('click', function () {
+        // Получаем данные из формы
+        const date = document.getElementById('date').value;
+        const nachalo = document.getElementById('nachalo').value;
+        const konec = document.getElementById('konec').value;
+        const kolichestvo = document.getElementById('kolichestvo').value;
+
+        const additionalServices = Array.from(document.querySelectorAll('#additional-services input:checked'))
+            .map(checkbox => checkbox.value); // Собираем выбранные услуги
+
+        // Проверяем заполненность обязательных полей
+        if (!date || !nachalo || !konec || !kolichestvo) {
+            alert('Заполните все поля.');
+            return;
+        }
+
+        // Формируем данные для отправки
+        const requestData = {
+            holidayId: selectedHolidayId,
+            date,
+            nachalo,
+            konec,
+            additionalServices,
+            kolichestvo
+        };
+
+        console.log(requestData)
+
+        // Отправляем данные на сервер
+        fetch('/api/send-application', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestData)
+        })
+            .then(response => {
+                if (response.ok) {
+                    alert('Заявка успешно отправлена!');
+                    applicationModal.querySelector('form').reset(); // Сбрасываем форму
+                } else {
+                    alert('Ошибка при отправке заявки. Попробуйте снова.');
+                }
+            })
+            .catch(error => {
+                console.error('Ошибка при отправке заявки:', error);
+                alert('Ошибка при отправке заявки. Попробуйте снова.');
+            });
+    });
+});
+
+
 function logout() {
     document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
     window.location.href = '/';
 }
+

@@ -33,9 +33,9 @@ func (h *Handler) Home(ctx *context.Context) {
 	return
 }
 
-func (h *Handler) Uslugi(ctx *context.Context) {
+func (h *Handler) Profile(ctx *context.Context) {
 	SetHeaders(ctx)
-	http.ServeFile(ctx.Response, ctx.Request, "./internal/static/html/uslugi.html")
+	http.ServeFile(ctx.Response, ctx.Request, "./internal/static/html/profile.html")
 	return
 }
 

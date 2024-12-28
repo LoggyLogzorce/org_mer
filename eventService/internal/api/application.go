@@ -80,3 +80,43 @@ func (h *Handler) CancelApplication(ctx *context.Context) {
 		return
 	}
 }
+
+func (h *Handler) SaveApplication(ctx *context.Context) {
+	var data models.SendApplication
+	if err := json.NewDecoder(ctx.Request.Body).Decode(&data); err != nil {
+		log.Println(err)
+		ctx.Response.WriteHeader(400)
+		return
+	}
+
+	err := storage.SaveApplication(data)
+	if err != nil {
+		log.Println(err)
+		ctx.Response.WriteHeader(400)
+		return
+	}
+
+	res := response{
+		Ok: true,
+	}
+
+	ctx.Response.Header().Set("Content-Type", "application/json")
+	if err = json.NewEncoder(ctx.Response).Encode(&res); err != nil {
+		log.Println(err)
+		ctx.Response.WriteHeader(400)
+		return
+	}
+	ctx.Response.WriteHeader(201)
+}
+
+func (h *Handler) GetCustomerApplications(ctx *context.Context) {
+	uid := ctx.Request.URL.Query().Get("uid")
+
+	applications := storage.GetCustomerApplications(uid)
+
+	if err := json.NewEncoder(ctx.Response).Encode(&applications); err != nil {
+		log.Println(err)
+		ctx.Response.WriteHeader(400)
+		return
+	}
+}

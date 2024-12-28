@@ -7,6 +7,11 @@ loginForm.addEventListener('submit', (event) => {
     const login = document.getElementById('login').value;
     const password = document.getElementById('password').value;
 
+    if (!login || !password) {
+        alert("Заполните все поля.")
+        return
+    }
+
     const data = {
         login,
         password

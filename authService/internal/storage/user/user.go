@@ -14,6 +14,13 @@ func GetUser(u map[string]string) *models.User {
 	return user
 }
 
+func GetUserByLogin(u map[string]string) *models.User {
+	var user *models.User
+	db.DB().Preload("Rola").Where("login = ?", u["login"]).First(&user)
+
+	return user
+}
+
 func RegisterUser(u map[string]string) bool {
 	var user models.User
 	var role models.RolaPolzovatelya
